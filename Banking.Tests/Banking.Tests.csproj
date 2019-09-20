@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\Domain\BankAccountTest2.cs" />
     <Compile Remove="Models\Domain\BankAccountTransactionTest.cs" />
     <Compile Remove="Models\Domain\SavingsAccountTest.cs" />
     <Compile Remove="Models\Domain\TransactionTest.cs" />
@@ -21,10 +20,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Banking\Banking.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Domain\" />
   </ItemGroup>
 
 </Project>

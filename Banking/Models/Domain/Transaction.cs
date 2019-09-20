@@ -13,6 +13,8 @@ namespace Banking.Models.Domain
         #region Constructors
         public Transaction(decimal amount, TransactionType type)
         {
+            if (amount <= 0)
+               throw new ArgumentOutOfRangeException(nameof(amount), "Amount must be positive");
             Amount = amount;
             TransactionType = type;
             DateOfTrans = DateTime.Today;

@@ -1,6 +1,6 @@
 ﻿namespace Banking.Models.Domain
 {
-    class SavingsAccount : BankAccount
+    public class SavingsAccount : BankAccount
     {
         #region Fields
         protected const decimal WithdrawCost = 0.25M;

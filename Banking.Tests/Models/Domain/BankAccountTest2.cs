@@ -14,6 +14,15 @@ namespace Banking.Tests.Models.Domain
             _bankAccount = new BankAccount(accountNumber);
         }
 
+        [Theory]
+        [InlineData("123-4567890-0333")] //too long
+        [InlineData("123-1547563@60")] //wrong format
+        [InlineData("123-4567890-03")] //not divisable by 97
+        public void NewAccount_WrongAccountNumber_Fails(string accountNumber)
+        {
+            Assert.Throws<ArgumentException>(() => new BankAccount(accountNumber));
+        }
+
         [Fact]
         public void NewAccount_Null_Fails()
         {
@@ -58,7 +67,22 @@ namespace Banking.Tests.Models.Domain
             Assert.Equal(expected, _bankAccount.Balance);
         }
 
-       
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-100)]
+        public void Withdraw_NegativeOrZeroAmount_Fails(decimal amount)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => _bankAccount.Withdraw(amount));
+        }
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-100)]
+        public void Deposit_NegativeOrZeroAmount_Fails(decimal amount)
+        {
+            Assert.Throws<ArgumentOutOfRangeException>(() => _bankAccount.Deposit(amount));
+        }
+
         [Fact]
         public void Equals_2BankAccountsWithSameAccountNumber_ReturnsTrue()
         {
