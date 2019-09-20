@@ -66,5 +66,6 @@ namespace Banking.Tests.Models.Domain
             _transaction = new Transaction(200, TransactionType.Withdraw);
             Assert.False(_transaction.IsDeposit);
         }
+
     }
 }

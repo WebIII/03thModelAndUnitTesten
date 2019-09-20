@@ -17,19 +17,32 @@ namespace Banking.Tests.Models.Domain
             _bankAccount = new BankAccount(_bankAccountNumber);
         }
 
-        [Fact(Skip = "Not yet implemented")]
+        [Fact]
         public void NewAccount_HasZeroTransactions()
         {
+            Assert.Equal(0, _bankAccount.NumberOfTransactions);
         }
 
-        [Fact(Skip = "Not yet implemented")]
+        [Fact]
         public void Deposit_Amount_AddsTransaction()
         {
+            _bankAccount.Deposit(100);
+            Assert.Equal(1, _bankAccount.NumberOfTransactions);
+            //Test of de toegevoegde transactie de juiste gegevens bevat
+            Transaction t = new List<Transaction>(_bankAccount.GetTransactions(DateTime.Today, DateTime.Today))[0];
+            Assert.Equal(100, t.Amount);
+            Assert.Equal(TransactionType.Deposit, t.TransactionType);
         }
 
-        [Fact(Skip = "Not yet implemented")]
+        [Fact]
         public void WithDraw_Amount_AddsTransaction()
         {
+            _bankAccount.Withdraw(100);
+            Assert.Equal(1, _bankAccount.NumberOfTransactions);
+            //Test of de toegevoegde transactie de juiste gegevens bevat
+            Transaction t = new List<Transaction>(_bankAccount.GetTransactions(DateTime.Today, DateTime.Today))[0];
+            Assert.Equal(100, t.Amount);
+            Assert.Equal(TransactionType.Withdraw, t.TransactionType);
         }
 
         [Fact]

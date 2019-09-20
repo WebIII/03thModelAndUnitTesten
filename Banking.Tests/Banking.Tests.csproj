@@ -7,9 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\Domain\BankAccountTransactionTest.cs" />
     <Compile Remove="Models\Domain\SavingsAccountTest.cs" />
-    <Compile Remove="Models\Domain\TransactionTest.cs" />
   </ItemGroup>
 
   <ItemGroup>
