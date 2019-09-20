@@ -45,6 +45,7 @@ namespace Banking.Tests.Models.Domain
             Assert.Equal(TransactionType.Withdraw, t.TransactionType);
         }
 
+        /*
         [Fact]
         public void GetTransactions_All_ReturnsAllTransactions()
         {
@@ -105,6 +106,7 @@ namespace Banking.Tests.Models.Domain
             List<Transaction> tt = new List<Transaction>(_bankAccount.GetTransactions(_yesterday,null));
             Assert.Equal(2, tt.Count);
         }
+        */
 
         [Fact]
         public void GetTransactions_AfterADateWithoutTransactions_ReturnsNoTransactions()
@@ -113,7 +115,34 @@ namespace Banking.Tests.Models.Domain
             _bankAccount.Deposit(100);
             List<Transaction> tt = new List<Transaction>(_bankAccount.GetTransactions(_tomorrow, null));
             Assert.Empty(tt);
-        }       
+        }
+
+        public static IEnumerable<Object[]> TestData
+        {
+            get
+            {
+                DateTime yesterday = DateTime.Today.AddDays(-1);
+                DateTime tomorrow = DateTime.Today.AddDays(1);
+
+                yield return new Object[] { null, null, 2 };//All
+                yield return new Object[] { yesterday, tomorrow, 2 };//WithinAPeriodThatHasTransactions
+                yield return new Object[] { yesterday, yesterday, 0 };//WithinAPeriodThatHasNoTransactions
+                yield return new Object[] { null, tomorrow, 2 };//BeforeADateWithTransactions
+                yield return new Object[] { null, yesterday, 0 };//BeforeADateWithoutTransactions
+                yield return new Object[] { yesterday, null, 2 };//AfterADateWithTransactions
+                yield return new Object[] { tomorrow, null, 0 }; //AfterADateWithoutTransactions
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(TestData))]
+        public void GetTransactions_ReturnsTransactions(DateTime? from, DateTime? till, int expected)
+        {
+            _bankAccount.Deposit(100);
+            _bankAccount.Deposit(100);
+            List<Transaction> tt = new List<Transaction>(_bankAccount.GetTransactions(from, till));
+            Assert.Equal(expected, tt.Count);
+        }
     }
 }
 
