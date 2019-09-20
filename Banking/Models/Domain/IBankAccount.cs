@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Banking.Models.Domain
 {
-    interface IBankAccount
+    public interface IBankAccount
     {
         string AccountNumber { get; }
         decimal Balance { get; }

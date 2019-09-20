@@ -2,7 +2,7 @@
 
 namespace Banking.Models.Domain
 {
-    class Transaction
+    public class Transaction
     {
         #region Properties
         public DateTime DateOfTrans { get; }
