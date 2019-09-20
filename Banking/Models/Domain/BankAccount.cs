@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Banking.Models.Domain
 {
-    class BankAccount
+    class BankAccount : IBankAccount
     {
         #region Fields
         private readonly IList<Transaction> _transactions = new List<Transaction>();
