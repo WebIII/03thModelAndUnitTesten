@@ -29,7 +29,7 @@ namespace Banking.Models.Domain
         #endregion
 
         #region Methods
-        public void Withdraw(decimal amount)
+        public virtual void Withdraw(decimal amount)
         {
             _transactions.Add(new Transaction(amount, TransactionType.Withdraw));
             Balance -= amount;

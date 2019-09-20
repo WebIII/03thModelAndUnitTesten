@@ -19,6 +19,14 @@ namespace Banking
             IEnumerable<Transaction> transactions = account.GetTransactions(null, null);
             foreach (Transaction t in transactions)
                 Console.WriteLine($"Transaction: {t.DateOfTrans} - {t.Amount} - {t.TransactionType}");
+
+            SavingsAccount savingsAccount = new SavingsAccount("123-4567890-02", 0.05M);
+            Console.WriteLine($"SavingsAccount : {savingsAccount}");
+            savingsAccount.Deposit(200M);
+            savingsAccount.Withdraw(100M);
+            Console.WriteLine($"Balance savingsaccount: {savingsAccount.Balance} ");
+            savingsAccount.AddInterest();
+            Console.WriteLine($"Balance savingsaccount after interest: {savingsAccount.Balance} ");
         }
     }
 }

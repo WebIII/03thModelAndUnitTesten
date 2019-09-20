@@ -17,6 +17,13 @@
       <FileName>Models\Domain\Transaction.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Banking.Models.Domain.SavingsAccount">
+    <Position X="0.5" Y="4" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAEAAEAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\Domain\SavingsAccount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Enum Name="Banking.Models.Domain.TransactionType">
     <Position X="8.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
