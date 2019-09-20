@@ -35,14 +35,17 @@ namespace Banking.Tests.Models.Domain
             Assert.Equal(3, _savingsAccount.NumberOfTransactions);
         }
 
-        [Fact(Skip = "Not yet implemented")]
+        [Fact]
         public void Withdraw_IfBalanceGetsNegative_Fails()
         {
+            Assert.Throws<InvalidOperationException>(() => _savingsAccount.Withdraw(200));
         }
 
-        [Fact(Skip = "Not yet implemented")]
+        [Fact]
         public void AddInterest_ChangesBalance()
         {
+            _savingsAccount.AddInterest();
+            Assert.Equal(204, _savingsAccount.Balance);
         }
     }
 }
