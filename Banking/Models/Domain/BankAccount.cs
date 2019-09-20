@@ -12,8 +12,19 @@ namespace Banking.Models.Domain
         #endregion
 
         #region Properties
-        public decimal Balance { get; private set; }
-
+        // public decimal Balance { get; private set; }
+        public decimal Balance
+        {
+            get
+            {
+                decimal balance = 0;
+                foreach (var item in _transactions)
+                {
+                    balance = item.IsDeposit ? balance + item.Amount : balance - item.Amount;
+                }
+                return balance;
+            }
+        }
         public string AccountNumber
         {
             get
@@ -33,7 +44,7 @@ namespace Banking.Models.Domain
                 _accountNumber = value;
             }
         }
-        
+
         public int NumberOfTransactions
         {
             get { return _transactions.Count; }
@@ -44,7 +55,7 @@ namespace Banking.Models.Domain
         public BankAccount(string account)
         {
             AccountNumber = account;
-            Balance = Decimal.Zero;
+            //   Balance = Decimal.Zero;
         }
         #endregion
 
@@ -52,13 +63,13 @@ namespace Banking.Models.Domain
         public virtual void Withdraw(decimal amount)
         {
             _transactions.Add(new Transaction(amount, TransactionType.Withdraw));
-            Balance -= amount;
+            //Balance -= amount;
         }
 
         public void Deposit(decimal amount)
         {
             _transactions.Add(new Transaction(amount, TransactionType.Deposit));
-            Balance += amount;
+            //Balance += amount;
         }
 
         public IEnumerable<Transaction> GetTransactions(DateTime? from, DateTime? till)
