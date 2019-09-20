@@ -27,6 +27,7 @@ namespace Banking
             Console.WriteLine($"Balance savingsaccount: {savingsAccount.Balance} ");
             savingsAccount.AddInterest();
             Console.WriteLine($"Balance savingsaccount after interest: {savingsAccount.Balance} ");
+            Console.WriteLine(savingsAccount); // implicit call to ToString()
         }
     }
 }
